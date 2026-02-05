@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ratios & Fractions | They're the Same!</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="https://www.dropbox.com/scl/fi/h40yjlyg8ldefwfaa3dib/polymath-logo-sticker.png?rlkey=o1ra4taqy79gt9t8u096v82zj&raw=1" alt="Polymath" class="logo">
+            <span class="brand-text">Ratios & Fractions</span>
+        </div>
+        <div class="score-display">
+            <span class="score-label">Score:</span>
+            <span id="score">0</span>/<span id="total">0</span>
+            <span class="streak" id="streak"></span>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Introduction Section -->
+        <section id="intro" class="section intro-section">
+            <div class="intro-content">
+                <h1>🎯 Ratios & Fractions</h1>
+                <h2>They're Actually the Same Thing!</h2>
+                
+                <div class="concept-box">
+                    <div class="example-visual">
+                        <div class="emoji-row">
+                            <span>🐱</span><span>🐱</span><span>🐱</span>
+                            <span class="divider">|</span>
+                            <span>🐶</span><span>🐶</span>
+                        </div>
+                    </div>
+                    <div class="example-explanation">
+                        <p><strong>3 cats and 2 dogs</strong></p>
+                        <div class="comparison">
+                            <div class="compare-item">
+                                <span class="label">As a Ratio:</span>
+                                <span class="value">3 : 2</span>
+                            </div>
+                            <div class="compare-item">
+                                <span class="label">Cats as Fraction of Dogs:</span>
+                                <span class="value">3/2</span>
+                            </div>
+                            <div class="compare-item">
+                                <span class="label">Cats as Fraction of Total:</span>
+                                <span class="value">3/5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-insight">
+                    <span class="icon">💡</span>
+                    <div class="insight-text">
+                        <strong>Key Insight:</strong> A ratio like <strong>3:2</strong> is just another way of writing the fraction <strong>3/2</strong>!
+                        <br>The colon (:) in a ratio means the same as the division line (/) in a fraction.
+                    </div>
+                </div>
+
+                <button id="startBtn" class="btn btn-primary">Start Practice! 🚀</button>
+            </div>
+        </section>
+
+        <!-- Practice Section -->
+        <section id="practice" class="section practice-section" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="question-card" id="questionCard">
+                <div class="question-number">Question <span id="qNum">1</span> of <span id="qTotal">10</span></div>
+                
+                <div class="visual-display" id="visualDisplay">
+                    <!-- Emojis will be inserted here -->
+                </div>
+
+                <div class="question-text" id="questionText">
+                    <!-- Question text will be inserted here -->
+                </div>
+
+                <div class="answer-options" id="answerOptions">
+                    <!-- Answer buttons will be inserted here -->
+                </div>
+
+                <div class="feedback" id="feedback" style="display: none;">
+                    <div class="feedback-icon" id="feedbackIcon"></div>
+                    <div class="feedback-text" id="feedbackText"></div>
+                    <div class="feedback-explanation" id="feedbackExplanation"></div>
+                </div>
+
+                <button id="nextBtn" class="btn btn-secondary" style="display: none;">Next Question →</button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="section results-section" style="display: none;">
+            <div class="results-card">
+                <div class="results-icon" id="resultsIcon">🎉</div>
+                <h2 id="resultsTitle">Great Job!</h2>
+                <div class="results-score">
+                    <span id="finalScore">8</span>/<span id="finalTotal">10</span>
+                </div>
+                <p id="resultsMessage">You're getting the hang of ratios and fractions!</p>
+                
+                <div class="results-summary" id="resultsSummary">
+                    <!-- Summary will be inserted here -->
+                </div>
+
+                <div class="results-buttons">
+                    <button id="tryAgainBtn" class="btn btn-primary">Try Again 🔄</button>
+                    <button id="reviewBtn" class="btn btn-secondary">Review Concepts 📚</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concept Review Section -->
+        <section id="review" class="section review-section" style="display: none;">
+            <h2>📚 Understanding Ratios & Fractions</h2>
+            
+            <div class="review-cards">
+                <div class="review-card">
+                    <h3>🔢 What is a Ratio?</h3>
+                    <p>A ratio compares two quantities. It tells us "for every X of one thing, there are Y of another."</p>
+                    <div class="mini-example">
+                        <div class="emoji-mini">🍎🍎🍎 : 🍊🍊</div>
+                        <p>3 apples to 2 oranges = <strong>3:2</strong></p>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <h3>📊 What is a Fraction?</h3>
+                    <p>A fraction shows a part of a whole, or compares one quantity to another.</p>
+                    <div class="mini-example">
+                        <p>3 apples out of 5 fruits = <strong>3/5</strong></p>
+                        <p>Apples compared to oranges = <strong>3/2</strong></p>
+                    </div>
+                </div>
+
+                <div class="review-card highlight">
+                    <h3>🤝 They're Connected!</h3>
+                    <p>The ratio <strong>a:b</strong> can be written as the fraction <strong>a/b</strong></p>
+                    <div class="connection-visual">
+                        <span class="ratio-form">3 : 2</span>
+                        <span class="equals">=</span>
+                        <span class="fraction-form">3/2</span>
+                    </div>
+                    <p class="note">The colon (:) is like the fraction bar!</p>
+                </div>
+
+                <div class="review-card">
+                    <h3>⚠️ Be Careful!</h3>
+                    <p><strong>Ratio 3:2</strong> means comparing 3 to 2</p>
+                    <p><strong>Fraction 3/5</strong> means 3 out of total 5</p>
+                    <p class="tip">Always check: Are you comparing <em>part to part</em> or <em>part to whole</em>?</p>
+                </div>
+            </div>
+
+            <button id="backToStartBtn" class="btn btn-primary">Back to Practice 🎯</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>Made with ❤️ by Polymath Learning Centre</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
