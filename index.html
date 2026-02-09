@@ -45,11 +45,23 @@
                             </div>
                             <div class="compare-item">
                                 <span class="label">Cats as Fraction of Dogs:</span>
-                                <span class="value">3/2</span>
+                                <span class="value">
+                                    <span class="stacked-frac">
+                                        <span class="sf-num">3</span>
+                                        <span class="sf-bar"></span>
+                                        <span class="sf-den">2</span>
+                                    </span>
+                                </span>
                             </div>
                             <div class="compare-item">
                                 <span class="label">Cats as Fraction of Total:</span>
-                                <span class="value">3/5</span>
+                                <span class="value">
+                                    <span class="stacked-frac">
+                                        <span class="sf-num">3</span>
+                                        <span class="sf-bar"></span>
+                                        <span class="sf-den">5</span>
+                                    </span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -58,8 +70,9 @@
                 <div class="key-insight">
                     <span class="icon">💡</span>
                     <div class="insight-text">
-                        <strong>Key Insight:</strong> A ratio like <strong>3:2</strong> is just another way of writing the fraction <strong>3/2</strong>!
-                        <br>The colon (:) in a ratio means the same as the division line (/) in a fraction.
+                        <strong>Key Insight:</strong> A ratio like <strong>3:2</strong> is just another way of writing the fraction
+                        <span class="stacked-frac inline-frac"><span class="sf-num">3</span><span class="sf-bar"></span><span class="sf-den">2</span></span>!
+                        <br>The colon (:) in a ratio means the same as the fraction bar.
                     </div>
                 </div>
 
@@ -95,10 +108,12 @@
                 <div class="farm-expressions">
                     <div class="expression-card">
                         <div class="expression-label">🐱 Cats as a fraction of 🐶 Dogs</div>
-                        <div class="expression-value fraction-display">
-                            <span class="frac-top" id="fracTop">25</span>
-                            <span class="frac-bar"></span>
-                            <span class="frac-bottom" id="fracBottom">20</span>
+                        <div class="expression-value">
+                            <span class="stacked-frac large-frac">
+                                <span class="sf-num" id="fracTop">25</span>
+                                <span class="sf-bar"></span>
+                                <span class="sf-den" id="fracBottom">20</span>
+                            </span>
                         </div>
                     </div>
                     <div class="expression-card">
@@ -115,93 +130,7 @@
                     <p class="simplify-intro">Can we make these numbers smaller while keeping the same relationship?</p>
 
                     <div class="simplify-steps" id="simplifySteps">
-                        <!-- Step 0: Original -->
-                        <div class="simplify-step active" id="step0">
-                            <div class="step-badge">Start</div>
-                            <div class="step-fraction">
-                                <span class="frac-top">25</span>
-                                <span class="frac-bar"></span>
-                                <span class="frac-bottom">20</span>
-                            </div>
-                            <div class="step-ratio">25 : 20</div>
-                            <div class="step-description">We have 25 cats for every 20 dogs</div>
-                        </div>
-
-                        <!-- Arrow -->
-                        <div class="step-arrow" id="arrow1" style="display:none;">
-                            <div class="arrow-action">÷ 5</div>
-                            <div class="arrow-icon">➡️</div>
-                            <div class="arrow-reason">Both 25 and 20 are divisible by 5!</div>
-                        </div>
-
-                        <!-- Step 1: Find GCD -->
-                        <div class="simplify-step" id="step1" style="display:none;">
-                            <div class="step-badge">Step 1</div>
-                            <div class="step-find-gcd">
-                                <div class="gcd-title">Find what both numbers share</div>
-                                <div class="gcd-factors">
-                                    <div class="factor-row">
-                                        <span class="factor-label">25 =</span>
-                                        <span class="factor-value"><mark>5</mark> × 5</span>
-                                    </div>
-                                    <div class="factor-row">
-                                        <span class="factor-label">20 =</span>
-                                        <span class="factor-value"><mark>5</mark> × 4</span>
-                                    </div>
-                                </div>
-                                <div class="gcd-result">
-                                    GCD (Greatest Common Divisor) = <strong>5</strong>
-                                </div>
-                            </div>
-                            <div class="step-description">Both numbers can be divided evenly by 5</div>
-                        </div>
-
-                        <!-- Arrow -->
-                        <div class="step-arrow" id="arrow2" style="display:none;">
-                            <div class="arrow-action">÷ 5</div>
-                            <div class="arrow-icon">➡️</div>
-                        </div>
-
-                        <!-- Step 2: Divide -->
-                        <div class="simplify-step" id="step2" style="display:none;">
-                            <div class="step-badge">Step 2</div>
-                            <div class="step-division">
-                                <div class="division-row">
-                                    <span class="div-original">25</span>
-                                    <span class="div-operator">÷ 5 =</span>
-                                    <span class="div-result">5</span>
-                                </div>
-                                <div class="division-bar"></div>
-                                <div class="division-row">
-                                    <span class="div-original">20</span>
-                                    <span class="div-operator">÷ 5 =</span>
-                                    <span class="div-result">4</span>
-                                </div>
-                            </div>
-                            <div class="step-description">Divide both top and bottom by 5</div>
-                        </div>
-
-                        <!-- Arrow -->
-                        <div class="step-arrow" id="arrow3" style="display:none;">
-                            <div class="arrow-icon">➡️</div>
-                        </div>
-
-                        <!-- Step 3: Result -->
-                        <div class="simplify-step result-step" id="step3" style="display:none;">
-                            <div class="step-badge result-badge">Result</div>
-                            <div class="step-fraction simplified">
-                                <span class="frac-top">5</span>
-                                <span class="frac-bar"></span>
-                                <span class="frac-bottom">4</span>
-                            </div>
-                            <div class="step-ratio simplified">5 : 4</div>
-                            <div class="step-description">For every 5 cats, there are 4 dogs!</div>
-                            <div class="step-visual-proof">
-                                <span>🐱🐱🐱🐱🐱</span>
-                                <span class="proof-divider">:</span>
-                                <span>🐶🐶🐶🐶</span>
-                            </div>
-                        </div>
+                        <!-- Dynamically generated by JS -->
                     </div>
 
                     <div class="simplify-controls">
@@ -303,18 +232,22 @@
                     <h3>📊 What is a Fraction?</h3>
                     <p>A fraction shows a part of a whole, or compares one quantity to another.</p>
                     <div class="mini-example">
-                        <p>3 apples out of 5 fruits = <strong>3/5</strong></p>
-                        <p>Apples compared to oranges = <strong>3/2</strong></p>
+                        <p>3 apples out of 5 fruits = <span class="stacked-frac inline-frac"><span class="sf-num"><strong>3</strong></span><span class="sf-bar"></span><span class="sf-den"><strong>5</strong></span></span></p>
+                        <p>Apples compared to oranges = <span class="stacked-frac inline-frac"><span class="sf-num"><strong>3</strong></span><span class="sf-bar"></span><span class="sf-den"><strong>2</strong></span></span></p>
                     </div>
                 </div>
 
                 <div class="review-card highlight">
                     <h3>🤝 They're Connected!</h3>
-                    <p>The ratio <strong>a:b</strong> can be written as the fraction <strong>a/b</strong></p>
+                    <p>The ratio <strong>a:b</strong> can be written as the fraction
+                        <span class="stacked-frac inline-frac small-frac"><span class="sf-num">a</span><span class="sf-bar"></span><span class="sf-den">b</span></span>
+                    </p>
                     <div class="connection-visual">
                         <span class="ratio-form">3 : 2</span>
                         <span class="equals">=</span>
-                        <span class="fraction-form">3/2</span>
+                        <span class="fraction-form">
+                            <span class="stacked-frac"><span class="sf-num">3</span><span class="sf-bar"></span><span class="sf-den">2</span></span>
+                        </span>
                     </div>
                     <p class="note">The colon (:) is like the fraction bar!</p>
                 </div>
@@ -322,7 +255,7 @@
                 <div class="review-card">
                     <h3>⚠️ Be Careful!</h3>
                     <p><strong>Ratio 3:2</strong> means comparing 3 to 2</p>
-                    <p><strong>Fraction 3/5</strong> means 3 out of total 5</p>
+                    <p><strong>Fraction <span class="stacked-frac inline-frac small-frac"><span class="sf-num">3</span><span class="sf-bar"></span><span class="sf-den">5</span></span></strong> means 3 out of total 5</p>
                     <p class="tip">Always check: Are you comparing <em>part to part</em> or <em>part to whole</em>?</p>
                 </div>
             </div>

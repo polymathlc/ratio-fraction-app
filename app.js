@@ -384,39 +384,45 @@ function renderEmojiGrid(containerId, emoji, count) {
     }
 }
 
-// Build simplification steps dynamically
+// Helper: build a stacked fraction HTML string
+function fracHTML(num, den, extraClass) {
+    const cls = extraClass ? ` ${extraClass}` : '';
+    return `<span class="stacked-frac${cls}">` +
+        `<span class="sf-num">${num}</span>` +
+        `<span class="sf-bar"></span>` +
+        `<span class="sf-den">${den}</span>` +
+    `</span>`;
+}
+
+// Build simplification steps dynamically showing BOTH fraction & ratio
 function buildSimplifySteps(cats, dogs) {
     const divisor = gcd(cats, dogs);
     const simplifiedCats = cats / divisor;
     const simplifiedDogs = dogs / divisor;
     const stepsContainer = document.getElementById('simplifySteps');
 
-    // Factor display for cats
-    const catFactors = [];
-    const dogFactors = [];
-    for (let i = 2; i <= cats; i++) {
-        if (cats % i === 0 && dogs % i === 0) {
-            // only show the GCD breakdown
-        }
-    }
-
     stepsContainer.innerHTML = `
-        <!-- Step 0: Original -->
+        <!-- Step 0: Original - show both fraction and ratio -->
         <div class="simplify-step active" id="step0">
             <div class="step-badge">Start</div>
-            <div class="step-fraction">
-                <span class="frac-top">${cats}</span>
-                <span class="frac-bar"></span>
-                <span class="frac-bottom">${dogs}</span>
+            <div class="step-dual">
+                <div class="dual-col">
+                    <div class="dual-label">Fraction</div>
+                    ${fracHTML(cats, dogs, 'step-frac')}
+                </div>
+                <div class="dual-equals">=</div>
+                <div class="dual-col">
+                    <div class="dual-label">Ratio</div>
+                    <span class="step-ratio-val">${cats} : ${dogs}</span>
+                </div>
             </div>
-            <div class="step-ratio">${cats} : ${dogs}</div>
-            <div class="step-description">We have ${cats} cats for every ${dogs} dogs</div>
+            <div class="step-description">We have ${cats} 🐱 for every ${dogs} 🐶</div>
         </div>
 
         <!-- Arrow 1 -->
         <div class="step-arrow" id="arrow1" style="display:none;">
             <div class="arrow-action">÷ ${divisor}</div>
-            <div class="arrow-icon">➡️</div>
+            <div class="arrow-icon">⬇️</div>
             <div class="arrow-reason">Both ${cats} and ${dogs} are divisible by ${divisor}!</div>
         </div>
 
@@ -445,47 +451,60 @@ function buildSimplifySteps(cats, dogs) {
         <!-- Arrow 2 -->
         <div class="step-arrow" id="arrow2" style="display:none;">
             <div class="arrow-action">÷ ${divisor}</div>
-            <div class="arrow-icon">➡️</div>
+            <div class="arrow-icon">⬇️</div>
         </div>
 
-        <!-- Step 2: Divide -->
+        <!-- Step 2: Divide - show BOTH fraction and ratio being divided -->
         <div class="simplify-step" id="step2" style="display:none;">
             <div class="step-badge">Step 2</div>
-            <div class="step-division">
-                <div class="division-row">
-                    <span class="div-original">${cats}</span>
-                    <span class="div-operator">÷ ${divisor} =</span>
-                    <span class="div-result">${simplifiedCats}</span>
+            <div class="step-dual-divide">
+                <div class="divide-panel">
+                    <div class="dual-label">Simplify the Fraction</div>
+                    <div class="divide-visual">
+                        ${fracHTML(`<s>${cats}</s>`, `<s>${dogs}</s>`, 'step-frac faded-frac')}
+                        <span class="divide-arrow">➡️</span>
+                        ${fracHTML(`<span class="div-operator">${cats} ÷ ${divisor} =</span> <strong>${simplifiedCats}</strong>`, `<span class="div-operator">${dogs} ÷ ${divisor} =</span> <strong>${simplifiedDogs}</strong>`, 'step-frac')}
+                    </div>
                 </div>
-                <div class="division-bar"></div>
-                <div class="division-row">
-                    <span class="div-original">${dogs}</span>
-                    <span class="div-operator">÷ ${divisor} =</span>
-                    <span class="div-result">${simplifiedDogs}</span>
+                <div class="divide-panel">
+                    <div class="dual-label">Simplify the Ratio</div>
+                    <div class="divide-visual">
+                        <span class="ratio-old"><s>${cats} : ${dogs}</s></span>
+                        <span class="divide-arrow">➡️</span>
+                        <span class="ratio-new">
+                            <span class="div-operator">${cats}÷${divisor}</span> : <span class="div-operator">${dogs}÷${divisor}</span>
+                            = <strong>${simplifiedCats} : ${simplifiedDogs}</strong>
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="step-description">Divide both top and bottom by ${divisor}</div>
+            <div class="step-description">Divide both numbers by ${divisor}</div>
         </div>
 
         <!-- Arrow 3 -->
         <div class="step-arrow" id="arrow3" style="display:none;">
-            <div class="arrow-icon">➡️</div>
+            <div class="arrow-icon">⬇️</div>
         </div>
 
-        <!-- Step 3: Result -->
+        <!-- Step 3: Result - show both simplified fraction and ratio -->
         <div class="simplify-step result-step" id="step3" style="display:none;">
-            <div class="step-badge result-badge">Result</div>
-            <div class="step-fraction simplified">
-                <span class="frac-top">${simplifiedCats}</span>
-                <span class="frac-bar"></span>
-                <span class="frac-bottom">${simplifiedDogs}</span>
+            <div class="step-badge result-badge">Simplified!</div>
+            <div class="step-dual result-dual">
+                <div class="dual-col">
+                    <div class="dual-label">Fraction</div>
+                    ${fracHTML(simplifiedCats, simplifiedDogs, 'step-frac result-frac')}
+                </div>
+                <div class="dual-equals result-eq">=</div>
+                <div class="dual-col">
+                    <div class="dual-label">Ratio</div>
+                    <span class="step-ratio-val result-ratio">${simplifiedCats} : ${simplifiedDogs}</span>
+                </div>
             </div>
-            <div class="step-ratio simplified">${simplifiedCats} : ${simplifiedDogs}</div>
-            <div class="step-description">For every ${simplifiedCats} cat${simplifiedCats !== 1 ? 's' : ''}, there are ${simplifiedDogs} dog${simplifiedDogs !== 1 ? 's' : ''}!</div>
+            <div class="step-description">For every ${simplifiedCats} 🐱, there are ${simplifiedDogs} 🐶!</div>
             <div class="step-visual-proof">
-                <span>${'🐱'.repeat(simplifiedCats)}</span>
+                <span>${'🐱'.repeat(Math.min(simplifiedCats, 10))}</span>
                 <span class="proof-divider">:</span>
-                <span>${'🐶'.repeat(simplifiedDogs)}</span>
+                <span>${'🐶'.repeat(Math.min(simplifiedDogs, 10))}</span>
             </div>
         </div>
     `;
