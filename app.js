@@ -316,16 +316,17 @@ function startGame() {
     currentQuestion = 0;
     score = 0;
     streak = 0;
-    
+
     document.getElementById('score').textContent = '0';
     document.getElementById('total').textContent = '0';
     document.getElementById('streak').textContent = '';
-    
+
     generateQuestions();
-    
+
     document.getElementById('intro').style.display = 'none';
     document.getElementById('results').style.display = 'none';
     document.getElementById('review').style.display = 'none';
+    document.getElementById('farmScenario').style.display = 'none';
     document.getElementById('practice').style.display = 'block';
     
     displayQuestion();
@@ -336,6 +337,7 @@ function showReview() {
     document.getElementById('intro').style.display = 'none';
     document.getElementById('practice').style.display = 'none';
     document.getElementById('results').style.display = 'none';
+    document.getElementById('farmScenario').style.display = 'none';
     document.getElementById('review').style.display = 'block';
 }
 
@@ -345,6 +347,231 @@ function showIntro() {
     document.getElementById('practice').style.display = 'none';
     document.getElementById('results').style.display = 'none';
     document.getElementById('review').style.display = 'none';
+    document.getElementById('farmScenario').style.display = 'none';
+}
+
+// ==========================================
+// Farm Scenario - Interactive Emoji Learning
+// ==========================================
+
+let farmState = {
+    cats: 25,
+    dogs: 20,
+    currentStep: 0,
+    maxSteps: 3
+};
+
+// Calculate GCD using Euclidean algorithm
+function gcd(a, b) {
+    a = Math.abs(a);
+    b = Math.abs(b);
+    while (b) {
+        [a, b] = [b, a % b];
+    }
+    return a;
+}
+
+// Render the emoji grid for a given animal
+function renderEmojiGrid(containerId, emoji, count) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+        const span = document.createElement('span');
+        span.className = 'grid-emoji';
+        span.textContent = emoji;
+        span.style.animationDelay = `${i * 0.03}s`;
+        container.appendChild(span);
+    }
+}
+
+// Build simplification steps dynamically
+function buildSimplifySteps(cats, dogs) {
+    const divisor = gcd(cats, dogs);
+    const simplifiedCats = cats / divisor;
+    const simplifiedDogs = dogs / divisor;
+    const stepsContainer = document.getElementById('simplifySteps');
+
+    // Factor display for cats
+    const catFactors = [];
+    const dogFactors = [];
+    for (let i = 2; i <= cats; i++) {
+        if (cats % i === 0 && dogs % i === 0) {
+            // only show the GCD breakdown
+        }
+    }
+
+    stepsContainer.innerHTML = `
+        <!-- Step 0: Original -->
+        <div class="simplify-step active" id="step0">
+            <div class="step-badge">Start</div>
+            <div class="step-fraction">
+                <span class="frac-top">${cats}</span>
+                <span class="frac-bar"></span>
+                <span class="frac-bottom">${dogs}</span>
+            </div>
+            <div class="step-ratio">${cats} : ${dogs}</div>
+            <div class="step-description">We have ${cats} cats for every ${dogs} dogs</div>
+        </div>
+
+        <!-- Arrow 1 -->
+        <div class="step-arrow" id="arrow1" style="display:none;">
+            <div class="arrow-action">÷ ${divisor}</div>
+            <div class="arrow-icon">➡️</div>
+            <div class="arrow-reason">Both ${cats} and ${dogs} are divisible by ${divisor}!</div>
+        </div>
+
+        <!-- Step 1: Find GCD -->
+        <div class="simplify-step" id="step1" style="display:none;">
+            <div class="step-badge">Step 1</div>
+            <div class="step-find-gcd">
+                <div class="gcd-title">Find what both numbers share</div>
+                <div class="gcd-factors">
+                    <div class="factor-row">
+                        <span class="factor-label">${cats} =</span>
+                        <span class="factor-value"><mark>${divisor}</mark> × ${simplifiedCats}</span>
+                    </div>
+                    <div class="factor-row">
+                        <span class="factor-label">${dogs} =</span>
+                        <span class="factor-value"><mark>${divisor}</mark> × ${simplifiedDogs}</span>
+                    </div>
+                </div>
+                <div class="gcd-result">
+                    GCD (Greatest Common Divisor) = <strong>${divisor}</strong>
+                </div>
+            </div>
+            <div class="step-description">Both numbers can be divided evenly by ${divisor}</div>
+        </div>
+
+        <!-- Arrow 2 -->
+        <div class="step-arrow" id="arrow2" style="display:none;">
+            <div class="arrow-action">÷ ${divisor}</div>
+            <div class="arrow-icon">➡️</div>
+        </div>
+
+        <!-- Step 2: Divide -->
+        <div class="simplify-step" id="step2" style="display:none;">
+            <div class="step-badge">Step 2</div>
+            <div class="step-division">
+                <div class="division-row">
+                    <span class="div-original">${cats}</span>
+                    <span class="div-operator">÷ ${divisor} =</span>
+                    <span class="div-result">${simplifiedCats}</span>
+                </div>
+                <div class="division-bar"></div>
+                <div class="division-row">
+                    <span class="div-original">${dogs}</span>
+                    <span class="div-operator">÷ ${divisor} =</span>
+                    <span class="div-result">${simplifiedDogs}</span>
+                </div>
+            </div>
+            <div class="step-description">Divide both top and bottom by ${divisor}</div>
+        </div>
+
+        <!-- Arrow 3 -->
+        <div class="step-arrow" id="arrow3" style="display:none;">
+            <div class="arrow-icon">➡️</div>
+        </div>
+
+        <!-- Step 3: Result -->
+        <div class="simplify-step result-step" id="step3" style="display:none;">
+            <div class="step-badge result-badge">Result</div>
+            <div class="step-fraction simplified">
+                <span class="frac-top">${simplifiedCats}</span>
+                <span class="frac-bar"></span>
+                <span class="frac-bottom">${simplifiedDogs}</span>
+            </div>
+            <div class="step-ratio simplified">${simplifiedCats} : ${simplifiedDogs}</div>
+            <div class="step-description">For every ${simplifiedCats} cat${simplifiedCats !== 1 ? 's' : ''}, there are ${simplifiedDogs} dog${simplifiedDogs !== 1 ? 's' : ''}!</div>
+            <div class="step-visual-proof">
+                <span>${'🐱'.repeat(simplifiedCats)}</span>
+                <span class="proof-divider">:</span>
+                <span>${'🐶'.repeat(simplifiedDogs)}</span>
+            </div>
+        </div>
+    `;
+}
+
+// Update the farm display with given numbers
+function updateFarmDisplay(cats, dogs) {
+    farmState.cats = cats;
+    farmState.dogs = dogs;
+    farmState.currentStep = 0;
+
+    // Render grids
+    renderEmojiGrid('catGrid', '🐱', cats);
+    renderEmojiGrid('dogGrid', '🐶', dogs);
+
+    // Update counts
+    document.getElementById('catCount').textContent = `${cats} cat${cats !== 1 ? 's' : ''}`;
+    document.getElementById('dogCount').textContent = `${dogs} dog${dogs !== 1 ? 's' : ''}`;
+
+    // Update fraction & ratio displays
+    document.getElementById('fracTop').textContent = cats;
+    document.getElementById('fracBottom').textContent = dogs;
+    document.getElementById('ratioLeft').textContent = cats;
+    document.getElementById('ratioRight').textContent = dogs;
+
+    // Build simplification steps
+    buildSimplifySteps(cats, dogs);
+
+    // Reset simplify controls
+    document.getElementById('simplifyNextBtn').style.display = 'inline-flex';
+    document.getElementById('simplifyResetBtn').style.display = 'none';
+    document.getElementById('simplifyNextBtn').textContent = 'Show Next Step ➡️';
+}
+
+// Show next simplification step
+function showNextSimplifyStep() {
+    farmState.currentStep++;
+    const step = farmState.currentStep;
+
+    if (step <= 3) {
+        // Show the arrow before the step
+        const arrow = document.getElementById(`arrow${step}`);
+        if (arrow) {
+            arrow.style.display = 'flex';
+            arrow.classList.add('animate-in');
+        }
+
+        // Show the step
+        const stepEl = document.getElementById(`step${step}`);
+        if (stepEl) {
+            stepEl.style.display = 'block';
+            stepEl.classList.add('animate-in');
+            // Scroll into view
+            setTimeout(() => stepEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+        }
+    }
+
+    if (step >= 3) {
+        document.getElementById('simplifyNextBtn').style.display = 'none';
+        document.getElementById('simplifyResetBtn').style.display = 'inline-flex';
+    }
+}
+
+// Reset simplification steps
+function resetSimplifySteps() {
+    farmState.currentStep = 0;
+    // Hide all arrows and steps except step0
+    for (let i = 1; i <= 3; i++) {
+        const arrow = document.getElementById(`arrow${i}`);
+        const step = document.getElementById(`step${i}`);
+        if (arrow) { arrow.style.display = 'none'; arrow.classList.remove('animate-in'); }
+        if (step) { step.style.display = 'none'; step.classList.remove('animate-in'); }
+    }
+    document.getElementById('simplifyNextBtn').style.display = 'inline-flex';
+    document.getElementById('simplifyResetBtn').style.display = 'none';
+}
+
+// Show farm scenario section
+function showFarmScenario() {
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('practice').style.display = 'none';
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('review').style.display = 'none';
+    document.getElementById('farmScenario').style.display = 'block';
+
+    updateFarmDisplay(25, 20);
 }
 
 // Event listeners
@@ -354,4 +581,20 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('tryAgainBtn').addEventListener('click', startGame);
     document.getElementById('reviewBtn').addEventListener('click', showReview);
     document.getElementById('backToStartBtn').addEventListener('click', showIntro);
+
+    // Farm scenario listeners
+    document.getElementById('exploreBtn').addEventListener('click', showFarmScenario);
+    document.getElementById('simplifyNextBtn').addEventListener('click', showNextSimplifyStep);
+    document.getElementById('simplifyResetBtn').addEventListener('click', resetSimplifySteps);
+    document.getElementById('farmBackBtn').addEventListener('click', showIntro);
+    document.getElementById('farmPracticeBtn').addEventListener('click', startGame);
+
+    // Custom scenario
+    document.getElementById('customGoBtn').addEventListener('click', () => {
+        const cats = Math.max(1, Math.min(50, parseInt(document.getElementById('customCats').value) || 1));
+        const dogs = Math.max(1, Math.min(50, parseInt(document.getElementById('customDogs').value) || 1));
+        document.getElementById('customCats').value = cats;
+        document.getElementById('customDogs').value = dogs;
+        updateFarmDisplay(cats, dogs);
+    });
 });

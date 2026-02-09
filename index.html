@@ -63,7 +63,173 @@
                     </div>
                 </div>
 
-                <button id="startBtn" class="btn btn-primary">Start Practice! 🚀</button>
+                <button id="exploreBtn" class="btn btn-primary">Explore with Animals! 🐱🐶</button>
+                <button id="startBtn" class="btn btn-secondary">Skip to Practice 🚀</button>
+            </div>
+        </section>
+
+        <!-- Interactive Farm Scenario Section -->
+        <section id="farmScenario" class="section farm-section" style="display: none;">
+            <div class="farm-content">
+                <h2>🏡 The Farm Scenario</h2>
+                <p class="farm-subtitle">Let's explore ratios and fractions with animals on a farm!</p>
+
+                <!-- Emoji Grid Display -->
+                <div class="farm-field">
+                    <div class="farm-field-label">🐱 Cats on the Farm</div>
+                    <div class="emoji-grid" id="catGrid">
+                        <!-- 25 cats rendered by JS -->
+                    </div>
+                    <div class="emoji-count" id="catCount">25 cats</div>
+                </div>
+
+                <div class="farm-field">
+                    <div class="farm-field-label">🐶 Dogs on the Farm</div>
+                    <div class="emoji-grid" id="dogGrid">
+                        <!-- 20 dogs rendered by JS -->
+                    </div>
+                    <div class="emoji-count" id="dogCount">20 dogs</div>
+                </div>
+
+                <!-- Fraction and Ratio Display -->
+                <div class="farm-expressions">
+                    <div class="expression-card">
+                        <div class="expression-label">🐱 Cats as a fraction of 🐶 Dogs</div>
+                        <div class="expression-value fraction-display">
+                            <span class="frac-top" id="fracTop">25</span>
+                            <span class="frac-bar"></span>
+                            <span class="frac-bottom" id="fracBottom">20</span>
+                        </div>
+                    </div>
+                    <div class="expression-card">
+                        <div class="expression-label">Ratio of 🐱 Cats to 🐶 Dogs</div>
+                        <div class="expression-value ratio-display">
+                            <span id="ratioLeft">25</span> : <span id="ratioRight">20</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Simplification Process -->
+                <div class="simplify-section">
+                    <h3>🔍 Let's Simplify Step by Step!</h3>
+                    <p class="simplify-intro">Can we make these numbers smaller while keeping the same relationship?</p>
+
+                    <div class="simplify-steps" id="simplifySteps">
+                        <!-- Step 0: Original -->
+                        <div class="simplify-step active" id="step0">
+                            <div class="step-badge">Start</div>
+                            <div class="step-fraction">
+                                <span class="frac-top">25</span>
+                                <span class="frac-bar"></span>
+                                <span class="frac-bottom">20</span>
+                            </div>
+                            <div class="step-ratio">25 : 20</div>
+                            <div class="step-description">We have 25 cats for every 20 dogs</div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="step-arrow" id="arrow1" style="display:none;">
+                            <div class="arrow-action">÷ 5</div>
+                            <div class="arrow-icon">➡️</div>
+                            <div class="arrow-reason">Both 25 and 20 are divisible by 5!</div>
+                        </div>
+
+                        <!-- Step 1: Find GCD -->
+                        <div class="simplify-step" id="step1" style="display:none;">
+                            <div class="step-badge">Step 1</div>
+                            <div class="step-find-gcd">
+                                <div class="gcd-title">Find what both numbers share</div>
+                                <div class="gcd-factors">
+                                    <div class="factor-row">
+                                        <span class="factor-label">25 =</span>
+                                        <span class="factor-value"><mark>5</mark> × 5</span>
+                                    </div>
+                                    <div class="factor-row">
+                                        <span class="factor-label">20 =</span>
+                                        <span class="factor-value"><mark>5</mark> × 4</span>
+                                    </div>
+                                </div>
+                                <div class="gcd-result">
+                                    GCD (Greatest Common Divisor) = <strong>5</strong>
+                                </div>
+                            </div>
+                            <div class="step-description">Both numbers can be divided evenly by 5</div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="step-arrow" id="arrow2" style="display:none;">
+                            <div class="arrow-action">÷ 5</div>
+                            <div class="arrow-icon">➡️</div>
+                        </div>
+
+                        <!-- Step 2: Divide -->
+                        <div class="simplify-step" id="step2" style="display:none;">
+                            <div class="step-badge">Step 2</div>
+                            <div class="step-division">
+                                <div class="division-row">
+                                    <span class="div-original">25</span>
+                                    <span class="div-operator">÷ 5 =</span>
+                                    <span class="div-result">5</span>
+                                </div>
+                                <div class="division-bar"></div>
+                                <div class="division-row">
+                                    <span class="div-original">20</span>
+                                    <span class="div-operator">÷ 5 =</span>
+                                    <span class="div-result">4</span>
+                                </div>
+                            </div>
+                            <div class="step-description">Divide both top and bottom by 5</div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="step-arrow" id="arrow3" style="display:none;">
+                            <div class="arrow-icon">➡️</div>
+                        </div>
+
+                        <!-- Step 3: Result -->
+                        <div class="simplify-step result-step" id="step3" style="display:none;">
+                            <div class="step-badge result-badge">Result</div>
+                            <div class="step-fraction simplified">
+                                <span class="frac-top">5</span>
+                                <span class="frac-bar"></span>
+                                <span class="frac-bottom">4</span>
+                            </div>
+                            <div class="step-ratio simplified">5 : 4</div>
+                            <div class="step-description">For every 5 cats, there are 4 dogs!</div>
+                            <div class="step-visual-proof">
+                                <span>🐱🐱🐱🐱🐱</span>
+                                <span class="proof-divider">:</span>
+                                <span>🐶🐶🐶🐶</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="simplify-controls">
+                        <button id="simplifyNextBtn" class="btn btn-primary">Show Next Step ➡️</button>
+                        <button id="simplifyResetBtn" class="btn btn-secondary" style="display:none;">Reset Steps 🔄</button>
+                    </div>
+                </div>
+
+                <!-- Custom Scenario -->
+                <div class="custom-scenario">
+                    <h3>🎮 Try Your Own Numbers!</h3>
+                    <div class="custom-inputs">
+                        <div class="input-group">
+                            <label>🐱 Cats</label>
+                            <input type="number" id="customCats" min="1" max="50" value="25">
+                        </div>
+                        <div class="input-group">
+                            <label>🐶 Dogs</label>
+                            <input type="number" id="customDogs" min="1" max="50" value="20">
+                        </div>
+                        <button id="customGoBtn" class="btn btn-primary">Go! 🚀</button>
+                    </div>
+                </div>
+
+                <div class="farm-nav-buttons">
+                    <button id="farmBackBtn" class="btn btn-secondary">⬅️ Back to Intro</button>
+                    <button id="farmPracticeBtn" class="btn btn-primary">Start Practice! 🚀</button>
+                </div>
             </div>
         </section>
 

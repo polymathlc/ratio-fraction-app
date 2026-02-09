@@ -473,6 +473,491 @@ main {
     color: #92400e !important;
 }
 
+/* ==========================================
+   Farm Scenario Section
+   ========================================== */
+
+.farm-section {
+    padding: 2.5rem;
+}
+
+.farm-content {
+    text-align: center;
+}
+
+.farm-content h2 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.farm-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 2rem;
+}
+
+/* Emoji Grid - The farm fields */
+.farm-field {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 2px solid #86efac;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.farm-field-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #166534;
+    margin-bottom: 0.75rem;
+}
+
+.emoji-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    padding: 0.5rem;
+    min-height: 40px;
+}
+
+.grid-emoji {
+    font-size: 1.8rem;
+    animation: popIn 0.3s ease-out both;
+    transition: transform 0.2s;
+    cursor: default;
+}
+
+.grid-emoji:hover {
+    transform: scale(1.3);
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.emoji-count {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #166534;
+    margin-top: 0.5rem;
+    background: white;
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 20px;
+}
+
+/* Fraction & Ratio Expressions */
+.farm-expressions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.expression-card {
+    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+    border: 2px solid #a78bfa;
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.expression-label {
+    font-size: 0.95rem;
+    color: #5b21b6;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.expression-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4c1d95;
+}
+
+/* Styled fraction display */
+.fraction-display {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.fraction-display .frac-top,
+.fraction-display .frac-bottom {
+    display: block;
+    line-height: 1.2;
+}
+
+.fraction-display .frac-bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #4c1d95;
+    border-radius: 2px;
+    min-width: 50px;
+}
+
+.ratio-display {
+    letter-spacing: 4px;
+}
+
+/* Simplification Section */
+.simplify-section {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border: 2px solid #fdba74;
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.simplify-section h3 {
+    font-size: 1.5rem;
+    color: #9a3412;
+    margin-bottom: 0.5rem;
+}
+
+.simplify-intro {
+    color: #78350f;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.simplify-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* Each simplification step */
+.simplify-step {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border: 2px solid #e2e8f0;
+    position: relative;
+}
+
+.simplify-step.animate-in {
+    animation: slideDown 0.4s ease-out both;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.step-badge {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.result-badge {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+}
+
+.step-fraction {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #667eea;
+    margin: 0.5rem 0;
+}
+
+.step-fraction .frac-bar {
+    display: block;
+    width: 100%;
+    min-width: 50px;
+    height: 3px;
+    background: #667eea;
+    border-radius: 2px;
+}
+
+.step-fraction.simplified {
+    color: #10b981;
+    font-size: 2.5rem;
+}
+
+.step-fraction.simplified .frac-bar {
+    background: #10b981;
+}
+
+.step-ratio {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+    letter-spacing: 3px;
+}
+
+.step-ratio.simplified {
+    color: #10b981;
+    font-size: 1.5rem;
+}
+
+.step-description {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 0.5rem;
+}
+
+/* GCD Finding Step */
+.step-find-gcd {
+    text-align: left;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+.gcd-title {
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.gcd-factors {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.factor-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+}
+
+.factor-label {
+    font-weight: 600;
+    color: #475569;
+    min-width: 50px;
+    text-align: right;
+}
+
+.factor-value {
+    color: #1e293b;
+}
+
+.factor-value mark {
+    background: #fef08a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.gcd-result {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 2px dashed #cbd5e1;
+    color: #7c3aed;
+    font-size: 1rem;
+}
+
+/* Division Step */
+.step-division {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+.division-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 6px 0;
+    font-size: 1.2rem;
+}
+
+.div-original {
+    font-weight: 600;
+    color: #94a3b8;
+    text-decoration: line-through;
+    min-width: 40px;
+    text-align: right;
+}
+
+.div-operator {
+    color: #64748b;
+}
+
+.div-result {
+    font-weight: 700;
+    color: #10b981;
+    font-size: 1.4rem;
+    min-width: 40px;
+    text-align: left;
+}
+
+.division-bar {
+    height: 2px;
+    background: #e2e8f0;
+    margin: 4px 0;
+}
+
+/* Result visual proof */
+.step-visual-proof {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.8rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 2px dashed #d1fae5;
+}
+
+.proof-divider {
+    font-size: 1.5rem;
+    color: #94a3b8;
+    font-weight: 700;
+}
+
+.result-step {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+/* Step arrows */
+.step-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 0;
+    color: #f59e0b;
+}
+
+.step-arrow.animate-in {
+    animation: slideDown 0.3s ease-out both;
+}
+
+.arrow-action {
+    background: #fef3c7;
+    color: #92400e;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 4px 16px;
+    border-radius: 20px;
+    margin-bottom: 4px;
+}
+
+.arrow-icon {
+    font-size: 1.5rem;
+}
+
+.arrow-reason {
+    font-size: 0.8rem;
+    color: #92400e;
+    font-style: italic;
+}
+
+/* Simplify controls */
+.simplify-controls {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Custom Scenario */
+.custom-scenario {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 2px solid #93c5fd;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.custom-scenario h3 {
+    font-size: 1.3rem;
+    color: #1e40af;
+    margin-bottom: 1rem;
+}
+
+.custom-inputs {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e40af;
+}
+
+.input-group input {
+    width: 100px;
+    padding: 10px 14px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 2px solid #93c5fd;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #1e40af;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+
+/* Farm navigation buttons */
+.farm-nav-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
 /* Footer */
 footer {
     text-align: center;
@@ -505,5 +990,30 @@ footer {
     
     .results-buttons {
         flex-direction: column;
+    }
+
+    .farm-expressions {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-emoji {
+        font-size: 1.4rem;
+    }
+
+    .farm-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .step-fraction {
+        font-size: 1.6rem;
+    }
+
+    .farm-nav-buttons {
+        flex-direction: column;
+    }
+
+    .custom-inputs {
+        flex-direction: column;
+        align-items: center;
     }
 }
